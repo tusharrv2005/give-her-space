@@ -1,222 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Her Study Space ✨</title>
+    <title>Happy Birthday Shikha 🎂</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="app">
-
-    <header>
-        <div>
-            <h1>Her Study Space ✨</h1>
-            <p>A little space to make busy days easier.</p>
-        </div>
-
-        <div class="badge">
-            Made with ❤️
-        </div>
-    </header>
+    <!-- Background -->
+    <div class="background">
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+        <div class="stars"></div>
+    </div>
 
 
-    <main class="grid">
+    <!-- MUSIC BUTTON -->
 
-        <!-- TASKS -->
+    <button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+        🎵
+    </button>
 
-        <section class="card wide">
+    <audio id="music" loop>
+        <!--
+        Agar music add karna hai:
+        1. Apni MP3 file ka naam "music.mp3" rakho
+        2. GitHub mein upload karo
+        3. Neeche src mein music.mp3 likho
+        -->
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-            <h2>Today's Tasks 📝</h2>
 
-            <div class="input-row">
+    <!-- HERO -->
 
-                <input
-                    type="text"
-                    id="taskInput"
-                    placeholder="Add an assignment or task..."
-                >
+    <section class="hero" id="hero">
 
-                <button onclick="addTask()">
-                    Add
-                </button>
+        <div class="hero-content">
 
+            <div class="mini-label">
+                ✦ A LITTLE SURPRISE FOR YOU ✦
             </div>
 
-            <div id="tasks"></div>
-
-        </section>
-
-
-        <!-- PROGRESS -->
-
-        <section class="card">
-
-            <h2>Today's Progress 📊</h2>
-
-            <div class="percentage" id="percentage">
-                0%
+            <div class="cake">
+                🎂
             </div>
 
-            <div class="progress">
-                <div
-                    class="progress-bar"
-                    id="progressBar">
-                </div>
-            </div>
+            <h1>
+                Happy Birthday
+                <span>Shikha</span>
+            </h1>
 
-            <p class="small">
-                Finish your tasks and watch it grow 🌷
+            <p class="hero-text">
+                Some people deserve more than just a
+                “Happy Birthday” message...
+                so I made you something instead. ✨
             </p>
 
+            <button class="main-btn" onclick="startExperience()">
+                Open Your Surprise
+                <span>→</span>
+            </button>
+
+            <p class="hint">
+                ✨ Turn your sound on for the full experience
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN EXPERIENCE -->
+
+    <main id="mainContent" class="hidden">
+
+
+        <!-- INTRO -->
+
+        <section class="section intro-section">
+
+            <div class="section-number">
+                01 / A LITTLE NOTE
+            </div>
+
+            <h2>
+                This one's for you,
+                <span>Shikha.</span>
+            </h2>
+
+            <div class="glass-card letter-card">
+
+                <div class="letter-icon">
+                    💌
+                </div>
+
+                <p>
+                    Dear Shikha,
+                </p>
+
+                <p>
+                    I could have simply sent you a birthday message,
+                    but I thought you deserved something a little
+                    more special than that.
+                </p>
+
+                <p>
+                    So here is a tiny corner of the internet made
+                    especially for your birthday.
+                </p>
+
+                <p>
+                    I hope this new year of your life brings you
+                    beautiful moments, exciting opportunities,
+                    peaceful days and plenty of reasons to smile.
+                </p>
+
+                <p>
+                    Keep being yourself, keep chasing what you want,
+                    and don't forget to enjoy the little things
+                    along the way.
+                </p>
+
+                <p class="highlight">
+                    You deserve a really good year. 🌷
+                </p>
+
+                <div class="signature">
+                    Happy Birthday, Shikha! ❤️
+                    <br>
+                    <span>— Tushar</span>
+                </div>
+
+            </div>
+
         </section>
 
 
-        <!-- TIMER -->
 
-        <section class="card">
+        <!-- WISHES -->
 
-            <h2>Focus Timer ⏱️</h2>
+        <section class="section">
 
-            <div
-                class="timer"
-                id="timer">
-                25:00
+            <div class="section-number">
+                02 / BIRTHDAY WISHES
             </div>
 
-            <div class="button-row">
+            <h2>
+                Four things I wish
+                <span>for you.</span>
+            </h2>
 
-                <button onclick="startTimer()">
-                    Start
-                </button>
+            <div class="wish-grid">
+
+                <div class="wish-card">
+                    <div class="wish-icon">🌸</div>
+                    <h3>Happiness</h3>
+                    <p>
+                        May you have countless reasons
+                        to genuinely smile.
+                    </p>
+                </div>
+
+
+                <div class="wish-card">
+                    <div class="wish-icon">🚀</div>
+                    <h3>Success</h3>
+                    <p>
+                        May your hard work take you
+                        exactly where you want to go.
+                    </p>
+                </div>
+
+
+                <div class="wish-card">
+                    <div class="wish-icon">🌙</div>
+                    <h3>Peace</h3>
+                    <p>
+                        May you always find calm
+                        even when life gets busy.
+                    </p>
+                </div>
+
+
+                <div class="wish-card">
+                    <div class="wish-icon">✨</div>
+                    <h3>Memories</h3>
+                    <p>
+                        May this year give you stories
+                        worth remembering forever.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- INTERACTIVE REASONS -->
+
+        <section class="section">
+
+            <div class="section-number">
+                03 / JUST A REMINDER
+            </div>
+
+            <h2>
+                You're pretty
+                <span>awesome.</span>
+            </h2>
+
+            <div class="glass-card reason-card">
+
+                <p class="reason-intro">
+                    Click the buttons. There's a little
+                    reminder waiting behind each one. 👀
+                </p>
+
+                <div class="reason-buttons">
+
+                    <button onclick="showReason(0)">
+                        🌷 One
+                    </button>
+
+                    <button onclick="showReason(1)">
+                        ✨ Two
+                    </button>
+
+                    <button onclick="showReason(2)">
+                        💫 Three
+                    </button>
+
+                    <button onclick="showReason(3)">
+                        ❤️ Four
+                    </button>
+
+                </div>
+
+                <div class="reason-display" id="reasonDisplay">
+
+                    <span>💭</span>
+
+                    <p>
+                        Choose one above...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- BIRTHDAY CAKE -->
+
+        <section class="section cake-section">
+
+            <div class="section-number">
+                04 / MAKE A WISH
+            </div>
+
+            <h2>
+                One more thing...
+            </h2>
+
+            <div class="big-cake" id="bigCake">
+                🎂
+            </div>
+
+            <p>
+                Close your eyes for a second,
+                make a wish and then...
+            </p>
+
+            <button class="main-btn" onclick="makeWish()">
+                Blow the Candle ✨
+            </button>
+
+            <div id="wishMessage" class="wish-message hidden">
+                <h3>Wish made! ✨</h3>
+                <p>
+                    I hope this one comes true.
+                    You deserve it. ❤️
+                </p>
+            </div>
+
+        </section>
+
+
+
+        <!-- FINAL SURPRISE -->
+
+        <section class="final-section">
+
+            <div class="final-content">
+
+                <div class="mini-label">
+                    ✦ ONE LAST THING ✦
+                </div>
+
+                <div class="gift">
+                    🎁
+                </div>
+
+                <h2>
+                    Here's to
+                    <span>Shikha.</span>
+                </h2>
+
+                <p>
+                    To another year of learning,
+                    growing, laughing,
+                    making memories
+                    and becoming an even better version of yourself.
+                </p>
 
                 <button
-                    class="secondary"
-                    onclick="resetTimer()">
-                    Reset
+                    class="main-btn"
+                    onclick="finalSurprise()">
+
+                    Open Final Surprise
+                    🎁
+
                 </button>
 
-            </div>
+                <div
+                    id="finalMessage"
+                    class="final-message hidden">
 
-            <p class="small">
-                25 min focus • 5 min break
-            </p>
+                    <div class="heart">
+                        ❤️
+                    </div>
 
-        </section>
+                    <h3>
+                        Happy Birthday, Shikha!
+                    </h3>
 
+                    <p>
+                        May your life always have
+                        people who make you laugh,
+                        moments that make you grateful,
+                        and dreams that keep you excited
+                        about tomorrow.
+                    </p>
 
-        <!-- DAILY GOAL -->
+                    <strong>
+                        Have the most amazing birthday! 🎂✨
+                    </strong>
 
-        <section class="card">
-
-            <h2>Daily Goal 🎯</h2>
-
-            <input
-                type="text"
-                id="goalInput"
-                placeholder="What matters most today?"
-            >
-
-            <button
-                class="save-button"
-                onclick="saveGoal()">
-
-                Save Goal
-
-            </button>
-
-            <p
-                id="savedGoal"
-                class="small">
-            </p>
-
-        </section>
-
-
-        <!-- NOTES -->
-
-        <section class="card wide">
-
-            <h2>Quick Notes 📚</h2>
-
-            <textarea
-                id="notes"
-                placeholder="Write your notes, ideas or reminders here...">
-            </textarea>
-
-            <p class="small">
-                Your notes are automatically saved.
-            </p>
-
-        </section>
-
-
-        <!-- MOTIVATION -->
-
-        <section class="card full">
-
-            <h2>Little Reminder 💌</h2>
-
-            <div
-                class="quote"
-                id="quote">
-
-                “You don't have to do everything today.
-                Just do the next important thing.”
+                </div>
 
             </div>
 
-            <button onclick="newQuote()">
-                Give me another reminder ✨
-            </button>
-
         </section>
 
 
-        <!-- EXPENSE TRACKER -->
-
-        <section class="card full">
-
-            <h2>Expense Tracker 💰</h2>
-
-            <div class="input-row">
-
-                <input
-                    type="text"
-                    id="expenseName"
-                    placeholder="What did you spend on?"
-                >
-
-                <input
-                    type="number"
-                    id="expenseAmount"
-                    placeholder="₹ Amount"
-                >
-
-                <button onclick="addExpense()">
-                    Add
-                </button>
-
-            </div>
-
-            <div id="expenses"></div>
-
-            <div class="total">
-                Total: ₹<span id="total">0</span>
-            </div>
-
-        </section>
+        <footer>
+            Made with ✨ for Shikha Maurya
+            <br>
+            <small>Have an amazing year ahead 🌷</small>
+        </footer>
 
     </main>
 
-</div>
 
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
