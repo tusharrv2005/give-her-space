@@ -1,524 +1,403 @@
 /* =========================
-   TASK MANAGER
+   START EXPERIENCE
 ========================= */
 
-let tasks =
-    JSON.parse(localStorage.getItem("tasks")) || [];
+function startExperience() {
+
+    const hero =
+        document.getElementById("hero");
+
+    const content =
+        document.getElementById("mainContent");
 
 
-function saveData() {
+    hero.style.display = "none";
 
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
-
-}
+    content.classList.remove("hidden");
 
 
-function addTask() {
-
-    const input =
-        document.getElementById("taskInput");
-
-    const text =
-        input.value.trim();
-
-
-    if (text === "") {
-        return;
-    }
-
-
-    tasks.push({
-
-        text: text,
-
-        completed: false
-
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
 
 
-    input.value = "";
-
-    saveData();
-
-    renderTasks();
+    createConfetti();
 
 }
 
-
-function renderTasks() {
-
-    const container =
-        document.getElementById("tasks");
-
-
-    container.innerHTML = "";
-
-
-    tasks.forEach((task, index) => {
-
-        const div =
-            document.createElement("div");
-
-
-        div.className = "task";
-
-
-        div.innerHTML = `
-
-            <input
-                type="checkbox"
-                ${task.completed ? "checked" : ""}
-                onchange="toggleTask(${index})"
-            >
-
-            <span
-                class="${task.completed ? "completed" : ""}">
-                ${escapeHTML(task.text)}
-            </span>
-
-            <button
-                class="delete"
-                onclick="deleteTask(${index})">
-                ✕
-            </button>
-
-        `;
-
-
-        container.appendChild(div);
-
-    });
-
-
-    updateProgress();
-
-}
-
-
-function toggleTask(index) {
-
-    tasks[index].completed =
-        !tasks[index].completed;
-
-
-    saveData();
-
-    renderTasks();
-
-}
-
-
-function deleteTask(index) {
-
-    tasks.splice(index, 1);
-
-    saveData();
-
-    renderTasks();
-
-}
-
-
-/* Prevent HTML injection */
-
-function escapeHTML(text) {
-
-    return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
 
 
 /* =========================
-   PROGRESS
+   MUSIC
 ========================= */
 
-function updateProgress() {
-
-    const percentage =
-        document.getElementById("percentage");
-
-    const progressBar =
-        document.getElementById("progressBar");
+let playing = false;
 
 
-    if (tasks.length === 0) {
+function toggleMusic() {
 
-        percentage.textContent = "0%";
+    const music =
+        document.getElementById("music");
 
-        progressBar.style.width = "0%";
-
-        return;
-
-    }
+    const button =
+        document.getElementById("musicBtn");
 
 
-    const completed =
-        tasks.filter(
-            task => task.completed
-        ).length;
+    if (!playing) {
 
+        music.play()
+            .then(() => {
 
-    const progress =
-        Math.round(
-            completed / tasks.length * 100
-        );
+                playing = true;
 
+                button.textContent = "🔊";
 
-    percentage.textContent =
-        progress + "%";
-
-
-    progressBar.style.width =
-        progress + "%";
-
-}
-
-
-/* =========================
-   POMODORO TIMER
-========================= */
-
-let timeLeft = 25 * 60;
-
-let timerInterval = null;
-
-
-function updateTimer() {
-
-    const minutes =
-        Math.floor(timeLeft / 60);
-
-    const seconds =
-        timeLeft % 60;
-
-
-    document.getElementById("timer")
-        .textContent =
-        String(minutes).padStart(2, "0")
-        + ":"
-        + String(seconds).padStart(2, "0");
-
-}
-
-
-function startTimer() {
-
-    if (timerInterval !== null) {
-        return;
-    }
-
-
-    timerInterval =
-        setInterval(() => {
-
-            timeLeft--;
-
-            updateTimer();
-
-
-            if (timeLeft <= 0) {
-
-                clearInterval(timerInterval);
-
-                timerInterval = null;
+            })
+            .catch(() => {
 
                 alert(
-                    "Focus session complete! 🌷 Take a short break."
+                    "Music file (music.mp3) add karne ke baad music chalega."
                 );
 
+            });
 
-                timeLeft = 5 * 60;
+    } else {
 
-                updateTimer();
+        music.pause();
 
-            }
+        playing = false;
 
-        }, 1000);
-
-}
-
-
-function resetTimer() {
-
-    clearInterval(timerInterval);
-
-    timerInterval = null;
-
-    timeLeft = 25 * 60;
-
-    updateTimer();
-
-}
-
-
-/* =========================
-   DAILY GOAL
-========================= */
-
-function saveGoal() {
-
-    const goal =
-        document.getElementById("goalInput")
-            .value.trim();
-
-
-    localStorage.setItem(
-        "dailyGoal",
-        goal
-    );
-
-
-    displayGoal();
-
-}
-
-
-function displayGoal() {
-
-    const goal =
-        localStorage.getItem(
-            "dailyGoal"
-        );
-
-
-    const input =
-        document.getElementById(
-            "goalInput"
-        );
-
-
-    const saved =
-        document.getElementById(
-            "savedGoal"
-        );
-
-
-    if (goal) {
-
-        input.value = goal;
-
-        saved.textContent =
-            "Saved: " + goal;
+        button.textContent = "🎵";
 
     }
 
 }
 
 
-/* =========================
-   NOTES
-========================= */
-
-const notes =
-    document.getElementById("notes");
-
-
-notes.value =
-    localStorage.getItem("notes") || "";
-
-
-notes.addEventListener(
-    "input",
-    function () {
-
-        localStorage.setItem(
-            "notes",
-            notes.value
-        );
-
-    }
-);
-
 
 /* =========================
-   MOTIVATIONAL QUOTES
+   REASONS
 ========================= */
 
-const quotes = [
+const reasons = [
 
-    "You don't have to do everything today. Just do the next important thing.",
+    "You're someone who can make an ordinary conversation a lot more fun. 😄",
 
-    "Small progress is still progress. Keep going 🌷",
+    "You have your own personality and vibe — and that's something worth keeping. ✨",
 
-    "Future you is going to be proud of what you do today.",
+    "You deserve people around you who genuinely celebrate your happiness. ❤️",
 
-    "Take a breath. You are doing better than you think.",
-
-    "One focused hour can change the whole day.",
-
-    "You are capable of more than you think. ❤️"
+    "Most importantly, never forget that you are capable of doing amazing things. 🌷"
 
 ];
 
 
-function newQuote() {
+function showReason(index) {
 
-    const random =
-        Math.floor(
-            Math.random() * quotes.length
+    const box =
+        document.getElementById(
+            "reasonDisplay"
         );
 
 
-    document.getElementById("quote")
-        .textContent =
-        "“" + quotes[random] + "”";
+    box.innerHTML = `
 
-}
+        <span>💖</span>
 
+        <p>
+            ${reasons[index]}
+        </p>
 
-/* =========================
-   EXPENSE TRACKER
-========================= */
-
-let expenses =
-    JSON.parse(
-        localStorage.getItem("expenses")
-    ) || [];
+    `;
 
 
-function saveExpenses() {
+    box.animate(
 
-    localStorage.setItem(
-        "expenses",
-        JSON.stringify(expenses)
+        [
+            {
+                opacity: 0,
+                transform: "translateY(10px)"
+            },
+
+            {
+                opacity: 1,
+                transform: "translateY(0)"
+            }
+
+        ],
+
+        {
+            duration: 400
+        }
+
     );
 
 }
 
 
-function addExpense() {
 
-    const name =
+/* =========================
+   BLOW CANDLE
+========================= */
+
+function makeWish() {
+
+    const cake =
         document.getElementById(
-            "expenseName"
+            "bigCake"
         );
 
 
-    const amount =
+    const message =
         document.getElementById(
-            "expenseAmount"
+            "wishMessage"
         );
 
 
-    if (
-        name.value.trim() === "" ||
-        amount.value === ""
+    cake.classList.add("blown");
+
+    cake.textContent = "✨";
+
+
+    message.classList.remove("hidden");
+
+
+    createConfetti();
+
+}
+
+
+
+/* =========================
+   FINAL SURPRISE
+========================= */
+
+function finalSurprise() {
+
+    const message =
+        document.getElementById(
+            "finalMessage"
+        );
+
+
+    message.classList.remove("hidden");
+
+
+    createConfetti();
+
+
+    setTimeout(() => {
+
+        message.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 100);
+
+}
+
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti() {
+
+    const emojis = [
+
+        "🎉",
+        "✨",
+        "💖",
+        "🎈",
+        "🌸",
+        "⭐",
+        "🥳"
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < 55;
+        i++
     ) {
 
-        return;
+        const confetti =
+            document.createElement("div");
+
+
+        confetti.textContent =
+            emojis[
+                Math.floor(
+                    Math.random() *
+                    emojis.length
+                )
+            ];
+
+
+        confetti.style.position =
+            "fixed";
+
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+
+        confetti.style.top =
+            "-40px";
+
+
+        confetti.style.fontSize =
+            15 +
+            Math.random() * 22 +
+            "px";
+
+
+        confetti.style.zIndex =
+            "9999";
+
+
+        confetti.style.pointerEvents =
+            "none";
+
+
+        document.body.appendChild(
+            confetti
+        );
+
+
+        const duration =
+            1800 +
+            Math.random() * 2200;
+
+
+        const animation =
+            confetti.animate(
+
+                [
+
+                    {
+                        transform:
+                            "translateY(0) rotate(0deg)",
+
+                        opacity: 1
+
+                    },
+
+                    {
+
+                        transform:
+                            `translateY(110vh) rotate(${360 + Math.random() * 500}deg)`,
+
+                        opacity: 0
+
+                    }
+
+                ],
+
+                {
+
+                    duration:
+                        duration,
+
+                    easing:
+                        "cubic-bezier(.2,.7,.3,1)"
+
+                }
+
+            );
+
+
+        animation.onfinish =
+            () => confetti.remove();
 
     }
 
-
-    expenses.push({
-
-        name: name.value.trim(),
-
-        amount: Number(amount.value)
-
-    });
-
-
-    name.value = "";
-
-    amount.value = "";
-
-
-    saveExpenses();
-
-    renderExpenses();
-
 }
 
-
-function renderExpenses() {
-
-    const container =
-        document.getElementById(
-            "expenses"
-        );
-
-
-    container.innerHTML = "";
-
-
-    let total = 0;
-
-
-    expenses.forEach(
-        (expense, index) => {
-
-            total += expense.amount;
-
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className = "task";
-
-
-            div.innerHTML = `
-
-                <span>
-                    ${escapeHTML(expense.name)}
-                </span>
-
-                <strong>
-                    ₹${expense.amount}
-                </strong>
-
-                <button
-                    class="delete"
-                    onclick="deleteExpense(${index})">
-                    ✕
-                </button>
-
-            `;
-
-
-            container.appendChild(div);
-
-        }
-    );
-
-
-    document.getElementById(
-        "total"
-    ).textContent = total;
-
-}
-
-
-function deleteExpense(index) {
-
-    expenses.splice(index, 1);
-
-    saveExpenses();
-
-    renderExpenses();
-
-}
 
 
 /* =========================
-   INITIAL LOAD
+   RANDOM FLOATING SPARKLES
 ========================= */
 
-renderTasks();
+function sparkle() {
 
-renderExpenses();
+    const star =
+        document.createElement("div");
 
-displayGoal();
 
-updateTimer();
+    star.textContent = "✦";
+
+
+    star.style.position =
+        "fixed";
+
+
+    star.style.left =
+        Math.random() * 100 + "vw";
+
+
+    star.style.top =
+        "100vh";
+
+
+    star.style.color =
+        "#ffffff";
+
+
+    star.style.opacity =
+        ".7";
+
+
+    star.style.pointerEvents =
+        "none";
+
+
+    document.body.appendChild(
+        star
+    );
+
+
+    star.animate(
+
+        [
+
+            {
+                transform:
+                    "translateY(0)",
+                opacity: .7
+            },
+
+            {
+                transform:
+                    "translateY(-110vh)",
+                opacity: 0
+            }
+
+        ],
+
+        {
+
+            duration:
+                5000 +
+                Math.random() * 4000,
+
+            easing:
+                "linear"
+
+        }
+
+    ).onfinish =
+        () => star.remove();
+
+}
+
+
+setInterval(
+    sparkle,
+    900
+);
