@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Her Study Space ✨</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header>
+        <div>
+            <h1>Her Study Space ✨</h1>
+            <p>A little space to make busy days easier.</p>
+        </div>
+
+        <div class="badge">
+            Made with ❤️
+        </div>
+    </header>
+
+
+    <main class="grid">
+
+        <!-- TASKS -->
+
+        <section class="card wide">
+
+            <h2>Today's Tasks 📝</h2>
+
+            <div class="input-row">
+
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Add an assignment or task..."
+                >
+
+                <button onclick="addTask()">
+                    Add
+                </button>
+
+            </div>
+
+            <div id="tasks"></div>
+
+        </section>
+
+
+        <!-- PROGRESS -->
+
+        <section class="card">
+
+            <h2>Today's Progress 📊</h2>
+
+            <div class="percentage" id="percentage">
+                0%
+            </div>
+
+            <div class="progress">
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
+            </div>
+
+            <p class="small">
+                Finish your tasks and watch it grow 🌷
+            </p>
+
+        </section>
+
+
+        <!-- TIMER -->
+
+        <section class="card">
+
+            <h2>Focus Timer ⏱️</h2>
+
+            <div
+                class="timer"
+                id="timer">
+                25:00
+            </div>
+
+            <div class="button-row">
+
+                <button onclick="startTimer()">
+                    Start
+                </button>
+
+                <button
+                    class="secondary"
+                    onclick="resetTimer()">
+                    Reset
+                </button>
+
+            </div>
+
+            <p class="small">
+                25 min focus • 5 min break
+            </p>
+
+        </section>
+
+
+        <!-- DAILY GOAL -->
+
+        <section class="card">
+
+            <h2>Daily Goal 🎯</h2>
+
+            <input
+                type="text"
+                id="goalInput"
+                placeholder="What matters most today?"
+            >
+
+            <button
+                class="save-button"
+                onclick="saveGoal()">
+
+                Save Goal
+
+            </button>
+
+            <p
+                id="savedGoal"
+                class="small">
+            </p>
+
+        </section>
+
+
+        <!-- NOTES -->
+
+        <section class="card wide">
+
+            <h2>Quick Notes 📚</h2>
+
+            <textarea
+                id="notes"
+                placeholder="Write your notes, ideas or reminders here...">
+            </textarea>
+
+            <p class="small">
+                Your notes are automatically saved.
+            </p>
+
+        </section>
+
+
+        <!-- MOTIVATION -->
+
+        <section class="card full">
+
+            <h2>Little Reminder 💌</h2>
+
+            <div
+                class="quote"
+                id="quote">
+
+                “You don't have to do everything today.
+                Just do the next important thing.”
+
+            </div>
+
+            <button onclick="newQuote()">
+                Give me another reminder ✨
+            </button>
+
+        </section>
+
+
+        <!-- EXPENSE TRACKER -->
+
+        <section class="card full">
+
+            <h2>Expense Tracker 💰</h2>
+
+            <div class="input-row">
+
+                <input
+                    type="text"
+                    id="expenseName"
+                    placeholder="What did you spend on?"
+                >
+
+                <input
+                    type="number"
+                    id="expenseAmount"
+                    placeholder="₹ Amount"
+                >
+
+                <button onclick="addExpense()">
+                    Add
+                </button>
+
+            </div>
+
+            <div id="expenses"></div>
+
+            <div class="total">
+                Total: ₹<span id="total">0</span>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
